@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <title>Your Manual</title>
+</head>
+<body>
+
+    <header>
+        <h1>러닝스튜디오 매뉴얼 가이드</h1>
+    </header>
+
+    <div class="button-container">
+        <button class="button-box" onclick="window.location.href='notebook.html'">노트북</button>
+        <button class="button-box" onclick="window.location.href='tensorboard.html'">텐서보드</button>
+        <button class="button-box" onclick="window.location.href='katib.html'">AutoML</button>
+        <button class="button-box" onclick="window.location.href='serving.html'">서빙</button>
+        <button class="button-box" onclick="window.location.href='pipeline.html'">파이프라인</button>
+        <button class="button-box" onclick="window.location.href='pipeline-experiments.html'">파이프라인 실험</button>
+        <button class="button-box" onclick="window.location.href='pipeline-recurringruns.html'">파이프라인 스케줄링</button>
+        <button class="button-box" onclick="window.location.href='volume.html'">볼륨</button>
+        <button class="button-box" onclick="window.location.href='manage-users.html'">리소스 공유 관리</button>
+        <!-- 추가적인 버튼들 -->
+    </div>
+
+    <section>
+        <h2>Step 1. 리소스 공유 관리 리스트</h2>
+        <p class="board">1. 러닝스튜디오 대시보드 접속합니다.</p>
+        <p class="board">2. 좌측에 메뉴에서 <strong>관리 → 리소스 공유 관리</strong> 탭을 선택입니다.</p>
+        <img src="manage-users/1.manage-users.png" alt="manage-users list">
+    </section>
+
+    <section>
+        <h2>Step 2. 리소스 공유 관리 상세 정보</h2>
+        <ul class="ul-indent">
+        <img src="manage-users/2.manage-users.png" alt="manage-users list">
+        <table border="1" style="width: 50%;">
+            <thead>
+                <th>항목</th>
+                <th>설명</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>계정 정보</strong> </td>
+                    <td>로그인 계정 정보</td>
+                </tr>
+
+                <tr>
+                    <td><strong>네임스페이스 현황 및 권한</strong></td>
+                    <td>네임스페이스에 대한 현황 리스트</td>
+                </tr>
+                <tr>
+                    <td rowspan="2"><strong>네임스페이스 권한 부여(리소스 권한)</strong></td>
+                    <td>현 네임스페이스 리소스 권한 부여</td>
+                </tr>
+                <tr>
+                    <td>권한 부여 : 이메일 형식으로 부여 가능</td>
+                </tr>
+
+            </tbody>
+        </table><br>  
+        
+
+
+    </section>
+
+        
+    <section>
+        <h2>Step 3. 리소스 공유 관리 상세 정보</h2>
+        <p class="board">1) 계정 권한 부여</p>
+        <ul class="ul-indent">
+            <li>권한 부여할 사용자 이메일 주소 등록</li><br>
+            <img src="manage-users/3.manage-users.png" alt="manage-users list">
+        </ul>
+
+        <p class="board">2) 계정 권한 부여 받은 사용자 권한 확인</p>
+        <ul class="ul-indent">
+            <li>상단에 네임스페이스 리스트 확인</li><br>
+            <li>자신의 네임스페이스 및 권한 부여 받은 네임스페이스 확인 가능</li><br>
+            <img src="manage-users/4.manage-users.png" alt="manage-users list">            
+        </ul>
+
+        <p class="board">3) 권한 정상 부여 확인</p>
+        <ul class="ul-indent">
+            <li>자신의 네임스페이스 리소스 확인</li><br>
+            <img src="manage-users/5.manage-users.png" alt="manage-users list"><br><br>
+            <li>부여 받은 네임스페이스 리소스 확인</li>
+            <img src="manage-users/6.manage-users.png" alt="manage-users list">
+                     
+        </ul>
+    </section>
+
+
+    <section>
+        <h2>Step 4. 리소스 공유 관리 권한 제거</h2>
+        <p class="in"></p>
+        <ul class="ul-indent">
+            <li>권한 제거할 이메일 주소 <strong>"x"</strong> 버튼 클릭</li><br>
+            <img src="manage-users/7.manage-users.png" alt="manage-users list">      
+        </ul>
+        
+
+    </section>
+
+    <footer>
+        <p>&copy; 2024 솔트룩스 러닝 스튜디오</p>
+    </footer>
+
+</body>
+</html>

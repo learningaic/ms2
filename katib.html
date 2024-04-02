@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <title>Your Manual</title>
+</head>
+<body>
+
+    <header>
+        <h1>러닝스튜디오 매뉴얼 가이드</h1>
+    </header>
+
+    <div class="button-container">
+        <button class="button-box" onclick="window.location.href='notebook.html'">노트북</button>
+        <button class="button-box" onclick="window.location.href='tensorboard.html'">텐서보드</button>
+        <button class="button-box" onclick="window.location.href='katib.html'">AutoML</button>
+        <button class="button-box" onclick="window.location.href='serving.html'">서빙</button>
+        <button class="button-box" onclick="window.location.href='pipeline.html'">파이프라인</button>
+        <button class="button-box" onclick="window.location.href='pipeline-experiments.html'">파이프라인 실험</button>
+        <button class="button-box" onclick="window.location.href='pipeline-recurringruns.html'">파이프라인 스케줄링</button>
+        <button class="button-box" onclick="window.location.href='volume.html'">볼륨</button>
+        <button class="button-box" onclick="window.location.href='manage-users.html'">리소스 공유 관리</button>
+        <!-- 추가적인 버튼들 -->
+    </div>
+
+    <section>
+        <h2>Step 1. AutoML 리스트</h2>
+        <p class="board">1. 러닝스튜디오 대시보드 접속합니다.</p>
+        <p class="board">2. 좌측에 메뉴에서 <strong>학습관리 → AutoML</strong> 탭을 선택입니다.</p>
+        <img src="katib/1.katib.png" alt="katib listt">
+    </section>
+
+    <section>
+        <h2>Step 2. AutoML 만들기</h2>
+        <p class="board">1. 러닝스튜디오 대시보드 접속합니다.</p>
+        <p class="board">2. 좌측에 메뉴에서 <strong>학습관리 → AutoML</strong> 탭을 선택입니다.</p>
+        <p class="board">3. "새 실험" 클릭</p>
+
+        <img src="katib/2.katib.png" alt="katib make"><br>
+
+            <p class="in">1) 각 항목 선택하여 생성</p>
+            <ul class="ul-indent">
+                <li>각 항목에 맞는 값 선택 후 <strong>"생성"</strong>버튼 클릭</li>
+                <img src="katib/3.katib.png" alt="katib make">
+            </ul>
+
+            <p class="in">2) YAML 스크립트로 생성</p>
+            <ul class="ul-indent">
+                <li>사전에 정의한 YAML 스크립트 업데이트</li>
+                <img src="katib/4.katib.png" alt="katib make">
+                <img src="katib/5.katib.png" alt="katib make">
+            </ul>
+        <p class="board">4. AutoML 확인</p>
+        <img src="katib/6.katib.png" alt="katib make">
+        <img src="katib/7.katib.png" alt="katib make">
+
+    </section>
+
+    <section>
+        <h2>Step 3. AutoML 삭제</h2>
+        <p class="in"></p>
+        <ul class="ul-indent">
+            <li>삭제할 AutoML 리스트에서 <strong>"휴지통"</strong> 아이콘 클릭</li><br>
+            <img src="katib/8.katib.png" alt="katib delete">
+            
+        </ul>
+        
+
+    </section>
+
+    <footer>
+        <p>&copy; 2024 솔트룩스 러닝 스튜디오</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <title>Your Manual</title>
+</head>
+<body>
+
+    <header>
+        <h1>러닝스튜디오 매뉴얼 가이드</h1>
+    </header>
+
+    <div class="button-container">
+        <button class="button-box" onclick="window.location.href='notebook.html'">노트북</button>
+        <button class="button-box" onclick="window.location.href='tensorboard.html'">텐서보드</button>
+        <button class="button-box" onclick="window.location.href='katib.html'">AutoML</button>
+        <button class="button-box" onclick="window.location.href='serving.html'">서빙</button>
+        <button class="button-box" onclick="window.location.href='pipeline.html'">파이프라인</button>
+        <button class="button-box" onclick="window.location.href='pipeline-experiments.html'">파이프라인 실험</button>
+        <button class="button-box" onclick="window.location.href='pipeline-recurringruns.html'">파이프라인 스케줄링</button>
+        <button class="button-box" onclick="window.location.href='volume.html'">볼륨</button>
+        <button class="button-box" onclick="window.location.href='manage-users.html'">리소스 공유 관리</button>
+        <!-- 추가적인 버튼들 -->
+    </div>
+
+    <section>
+        <h2>Step 1. 파이프라인 리스트 보기</h2>
+        <p class="board">1. 러닝스튜디오 대시보드 접속합니다.</p>
+        <p class="board">2. 좌측에 메뉴에서 <strong>파이프라인 → 파이프라인 리스트</strong> 탭을 선택입니다.</p>
+        <img src="pipeline/1.pipeline.png" alt="pipeline list">
+
+    </section>
+
+    <section>
+        <h2>Step 2. 파이프라인 업로드</h2>
+        <p class="board">1. 러닝스튜디오 대시보드 접속합니다.</p>
+        <p class="board">2. 좌측에 메뉴에서 <strong>파이프라인 → 파이프라인 리스트</strong> 탭을 선택입니다.</p>
+        <p class="board">3. 우측 상단에 <strong>파이프라인 업로드</strong></p>
+        <img src="pipeline/2.pipeline.png" alt="pipeline list">
+        <!-- <img src="pipeline/3.pipeline.png" alt="pipeline list"><br><br> -->
+        <img src="pipeline/4.pipeline.png" alt="pipeline list">
+
+        <table border="1" style="width: 50%;">
+            <thead>
+                <th>항목</th>
+                <th >설명</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>파이프라인 이름</td>
+                    <td>파이프라인 업로드 파일명 기준으로 자동 생성</td>
+                </tr>
+                <tr>
+                    <td>파일 업로드</td>
+                    <td>파이프라인 업로드(YAML,Zip, tar.gz 형식</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p class="board">4. 파이프라인 리스트 확인.</p> 
+        <ul class="ul-indent">
+            <li>업로드 된 파이프라인 구조</li><br>
+            <img src="pipeline/5.pipeline.png" alt="pipeline list">
+        </ul>
+    </section>    
+
+
+    <section>
+        <h2>Step 3. 파이프라인 삭제</h2>
+        <p class="board">1. 러닝스튜디오 대시보드 접속합니다.</p>
+        <p class="board">2. 좌측에 메뉴에서 <strong>파이프라인 → 파이프라인 리스트</strong> 탭을 선택입니다.</p>
+        <img src="pipeline/6.pipeline.png" alt="pipeline delete"><br><br>
+        <img src="pipeline/7.pipeline.png" alt="pipeline delete">
+
+    </section>
+
+    <footer>
+        <p>&copy; 2024 솔트룩스 러닝 스튜디오</p>
+    </footer>
+
+</body>
+</html>

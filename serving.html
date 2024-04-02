@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <title>Your Manual</title>
+</head>
+<body>
+
+    <header>
+        <h1>러닝스튜디오 매뉴얼 가이드</h1>
+    </header>
+
+    <div class="button-container">
+        <button class="button-box" onclick="window.location.href='notebook.html'">노트북</button>
+        <button class="button-box" onclick="window.location.href='tensorboard.html'">텐서보드</button>
+        <button class="button-box" onclick="window.location.href='katib.html'">AutoML</button>
+        <button class="button-box" onclick="window.location.href='serving.html'">서빙</button>
+        <button class="button-box" onclick="window.location.href='pipeline.html'">파이프라인</button>
+        <button class="button-box" onclick="window.location.href='pipeline-experiments.html'">파이프라인 실험</button>
+        <button class="button-box" onclick="window.location.href='pipeline-recurringruns.html'">파이프라인 스케줄링</button>
+        <button class="button-box" onclick="window.location.href='volume.html'">볼륨</button>
+        <button class="button-box" onclick="window.location.href='manage-users.html'">리소스 공유 관리</button>
+        <!-- 추가적인 버튼들 -->
+    </div>
+
+    <section>
+        <h2>Step 1. 서빙 만들기</h2>
+        <p class="board">1. 러닝스튜디오 대시보드 접속합니다.</p>
+        <p class="board">2. 좌측에 메뉴에서 <strong>학습관리 → 서빙 관리</strong> 탭을 선택입니다.</p>
+        <p class="board">3. 우측 상단에 위치한 “새 서빙 클릭</p>
+        <img src="kserve/1.kserve.png" alt="Create kserve">
+
+        <p class="board">4.서빙 생성</p>
+        <p class="p-indent">1) 서빙 생성 시 직접 YAML 스크립트 코드 복사/붙여넣기 → 실행 </p>
+        <ul class="ul-indent">
+            <li>name(이름) : 서빙 이름</li><br>
+            <li>spec/predictor/tensorflow : 예측 모델</li><br>
+            <li>StorageURL(모델 저장소) : PVC, Minio 스토리지 주소 적용 가능</li>
+        </ul>
+        <img src="kserve/2.kserve.png" alt="Create kserve">
+        
+        <p class="board">5.서빙 상세 정보</p>
+        <ul class="ul-indent">
+            <li>상태, 외부URL, 내부URL, 스토리지URL, 예측 모델</li>
+        </ul>
+        <img src="kserve/4.kserve.png" alt="Create kserve">
+
+    </section>
+
+    <section>
+        <h2>Step 2. 서빙 삭제</h2>
+        <p class="board">1. 러닝스튜디오 대시보드 접속합니다.</p>
+        <p class="board">2. 좌측에 메뉴에서 <strong>파이프라인 → 텐서보드</strong> 탭을 선택입니다.</p>
+        <p class="board">3. 서빙 삭제</p>
+        <p class="p-indent">1) 리스트에서 삭제 </p>
+        <ul class="ul-indent">
+            <li>삭제할 서빙 목록 -> <strong>"휴지통"</strong> 아이콘</li>
+            <img src="kserve/2-1_kserve.png" alt="Delete Kserve">
+        </ul>
+        <p class="p-indent">1) 상세 목록에서 삭제 </p>
+        <ul class="ul-indent">
+            <li>삭제할 서빙 상세 보기</li><br>
+            <li>우측 상단에 -> <strong>"삭제"</strong> 아이콘</li>
+            <img src="kserve/2-2_kserve.png" alt="Delete Kserve">
+        </ul>
+    </section>    
+
+
+    <section>
+        <h2>Step 3. 서빙 호출</h2> - 가이드 방향 나오실에 작성하기
+    </section>       
+
+    <footer>
+        <p>&copy; 2024 솔트룩스 러닝 스튜디오</p>
+    </footer>
+
+</body>
+</html>

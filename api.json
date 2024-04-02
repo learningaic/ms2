@@ -1,0 +1,1042 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "KServe ModelServer",
+    "version": "0.10.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Live",
+        "description": "Server live.\n\nReturns ``{\"status\": \"alive\"}`` on successful invocation.\nPrimarily meant to be used for Kubernetes liveness check.\n\nReturns:\n    Dict: {\"status\": \"alive\"}",
+        "operationId": "live__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metrics": {
+      "get": {
+        "summary": "Metrics Handler",
+        "operationId": "metrics_handler_metrics_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/models": {
+      "get": {
+        "tags": [
+          "V1"
+        ],
+        "summary": "Models",
+        "description": "Get a list of models in the model registry.\n\nReturns:\n    Dict[str, List[str]]: List of model names.",
+        "operationId": "models_v1_models_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/models/{model_name}": {
+      "get": {
+        "tags": [
+          "V1"
+        ],
+        "summary": "Model Ready",
+        "description": "Check if a given model is ready.\n\nArgs:\n    model_name (str): Model name.\n\nReturns:\n    Dict[str, Union[str, bool]]: Name of the model and whether it's ready.",
+        "operationId": "model_ready_v1_models__model_name__get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Model Name",
+              "type": "string"
+            },
+            "name": "model_name",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/models/{model_name}:predict": {
+      "post": {
+        "tags": [
+          "V1"
+        ],
+        "summary": "Predict",
+        "description": "Predict request handler.\n\nIt sends the request to the dataplane where the model will process the request body.\n\nArgs:\n    model_name (str): Model name.\n    request (Request): Raw request object.\n\nReturns:\n    Dict|Response: Model inference response.",
+        "operationId": "predict_v1_models__model_name__predict_post",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Model Name",
+              "type": "string"
+            },
+            "name": "model_name",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/models/{model_name}:explain": {
+      "post": {
+        "tags": [
+          "V1"
+        ],
+        "summary": "Explain",
+        "description": "Explain handler.\n\nArgs:\n    model_name (str): Model name.\n    request (Request): Raw request object.\n\nReturns:\n    Dict: Explainer output.",
+        "operationId": "explain_v1_models__model_name__explain_post",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Model Name",
+              "type": "string"
+            },
+            "name": "model_name",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2": {
+      "get": {
+        "tags": [
+          "V2"
+        ],
+        "summary": "Metadata",
+        "description": "Server metadata endpoint.\n\nReturns:\n    ServerMetadataResponse: Server metadata JSON object.",
+        "operationId": "metadata_v2_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerMetadataResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/health/live": {
+      "get": {
+        "tags": [
+          "V2"
+        ],
+        "summary": "Live",
+        "description": "Server live endpoint.\n\nReturns:\n    ServerLiveResponse: Server live message.",
+        "operationId": "live_v2_health_live_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerLiveResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/health/ready": {
+      "get": {
+        "tags": [
+          "V2"
+        ],
+        "summary": "Ready",
+        "description": "Server ready endpoint.\n\nReturns:\n    ServerReadyResponse: Server ready message.",
+        "operationId": "ready_v2_health_ready_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerReadyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/models/{model_name}": {
+      "get": {
+        "tags": [
+          "V2"
+        ],
+        "summary": "Model Metadata",
+        "description": "Model metadata handler. It provides information about a model.\n\nArgs:\n    model_name (str): Model name.\n    model_version (Optional[str]): Model version (optional).\n\nReturns:\n    ModelMetadataResponse: Model metadata object.",
+        "operationId": "model_metadata_v2_models__model_name__get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Model Name",
+              "type": "string"
+            },
+            "name": "model_name",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Model Version",
+              "type": "string"
+            },
+            "name": "model_version",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelMetadataResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/models/{model_name}/ready": {
+      "get": {
+        "tags": [
+          "V2"
+        ],
+        "summary": "Model Ready",
+        "description": "Check if a given model is ready.\n\nArgs:\n    model_name (str): Model name.\n    model_version (str): Model version.\n\nReturns:\n    ModelReadyResponse: Model ready object",
+        "operationId": "model_ready_v2_models__model_name__ready_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Model Name",
+              "type": "string"
+            },
+            "name": "model_name",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Model Version",
+              "type": "string"
+            },
+            "name": "model_version",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelReadyResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "v2/models/{model_name}/versions/{model_version}/ready": {
+      "get": {
+        "tags": [
+          "V2"
+        ],
+        "summary": "Model Ready",
+        "description": "Check if a given model is ready.\n\nArgs:\n    model_name (str): Model name.\n    model_version (str): Model version.\n\nReturns:\n    ModelReadyResponse: Model ready object",
+        "operationId": "model_readyv2_models__model_name__versions__model_version__ready_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Model Name",
+              "type": "string"
+            },
+            "name": "model_name",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Model Version",
+              "type": "string"
+            },
+            "name": "model_version",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelReadyResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/models/{model_name}/infer": {
+      "post": {
+        "tags": [
+          "V2"
+        ],
+        "summary": "Infer",
+        "description": "Infer handler.\n\nArgs:\n    raw_request (Request): fastapi request object,\n    raw_response (Response): fastapi response object,\n    model_name (str): Model name.\n    request_body (InferenceRequest): Inference request body.\n    model_version (Optional[str]): Model version (optional).\n\nReturns:\n    InferenceResponse: Inference response object.",
+        "operationId": "infer_v2_models__model_name__infer_post",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Model Name",
+              "type": "string"
+            },
+            "name": "model_name",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Model Version",
+              "type": "string"
+            },
+            "name": "model_version",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InferenceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InferenceResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/repository/models/{model_name}/load": {
+      "post": {
+        "tags": [
+          "V2"
+        ],
+        "summary": "Load",
+        "description": "Model load handler.\n\nArgs:\n    model_name (str): Model name.\n\nReturns:\n    Dict: {\"name\": model_name, \"load\": True}",
+        "operationId": "load_v2_repository_models__model_name__load_post",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Model Name",
+              "type": "string"
+            },
+            "name": "model_name",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/repository/models/{model_name}/unload": {
+      "post": {
+        "tags": [
+          "V2"
+        ],
+        "summary": "Unload",
+        "description": "Model unload handler.\n\nArgs:\n    model_name (str): Model name.\n\nReturns:\n    Dict: {\"name\": model_name, \"unload\": True}",
+        "operationId": "unload_v2_repository_models__model_name__unload_post",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Model Name",
+              "type": "string"
+            },
+            "name": "model_name",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
+          }
+        }
+      },
+      "InferenceRequest": {
+        "title": "InferenceRequest",
+        "required": [
+          "inputs"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "parameters": {
+            "title": "Parameters",
+            "type": "object",
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            }
+          },
+          "inputs": {
+            "title": "Inputs",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RequestInput"
+            }
+          },
+          "outputs": {
+            "title": "Outputs",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RequestOutput"
+            }
+          }
+        },
+        "description": "InferenceRequest Model\n\n$inference_request =\n{\n  \"id\" : $string #optional,\n  \"parameters\" : $parameters #optional,\n  \"inputs\" : [ $request_input, ... ],\n  \"outputs\" : [ $request_output, ... ] #optional\n}",
+        "example": {
+          "id": "42",
+          "inputs": [
+            {
+              "name": "input0",
+              "shape": [
+                2,
+                2
+              ],
+              "datatype": "UINT32",
+              "data": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "name": "input1",
+              "shape": [
+                3
+              ],
+              "datatype": "BOOL",
+              "data": [
+                "true"
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "name": "output0"
+            }
+          ]
+        }
+      },
+      "InferenceResponse": {
+        "title": "InferenceResponse",
+        "required": [
+          "model_name",
+          "id",
+          "outputs"
+        ],
+        "type": "object",
+        "properties": {
+          "model_name": {
+            "title": "Model Name",
+            "type": "string"
+          },
+          "model_version": {
+            "title": "Model Version",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "parameters": {
+            "title": "Parameters",
+            "type": "object",
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            }
+          },
+          "outputs": {
+            "title": "Outputs",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResponseOutput"
+            }
+          }
+        },
+        "description": "InferenceResponse\n\n$inference_response =\n{\n  \"model_name\" : $string,\n  \"model_version\" : $string #optional,\n  \"id\" : $string,\n  \"parameters\" : $parameters #optional,\n  \"outputs\" : [ $response_output, ... ]\n}",
+        "example": {
+          "id": "42",
+          "outputs": [
+            {
+              "name": "output0",
+              "shape": [
+                3,
+                2
+              ],
+              "datatype": "FP32",
+              "data": [
+                1,
+                1.1,
+                2,
+                2.1,
+                3,
+                3.1
+              ]
+            }
+          ]
+        }
+      },
+      "MetadataTensor": {
+        "title": "MetadataTensor",
+        "required": [
+          "name",
+          "datatype",
+          "shape"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "datatype": {
+            "title": "Datatype",
+            "type": "string"
+          },
+          "shape": {
+            "title": "Shape",
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "description": "MetadataTensor\n\n$metadata_tensor =\n{\n  \"name\" : $string,\n  \"datatype\" : $string,\n  \"shape\" : [ $number, ... ]\n}"
+      },
+      "ModelMetadataResponse": {
+        "title": "ModelMetadataResponse",
+        "required": [
+          "name",
+          "platform",
+          "inputs",
+          "outputs"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "versions": {
+            "title": "Versions",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "platform": {
+            "title": "Platform",
+            "type": "string"
+          },
+          "inputs": {
+            "title": "Inputs",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetadataTensor"
+            }
+          },
+          "outputs": {
+            "title": "Outputs",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetadataTensor"
+            }
+          }
+        },
+        "description": "ModelMetadataResponse\n\n$metadata_model_response =\n{\n  \"name\" : $string,\n  \"versions\" : [ $string, ... ] #optional,\n  \"platform\" : $string,\n  \"inputs\" : [ $metadata_tensor, ... ],\n  \"outputs\" : [ $metadata_tensor, ... ]\n}"
+      },
+      "ModelReadyResponse": {
+        "title": "ModelReadyResponse",
+        "required": [
+          "name",
+          "ready"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "ready": {
+            "title": "Ready",
+            "type": "boolean"
+          }
+        },
+        "description": "ModelReadyResponse\n\n$ready_model_response =\n{\n  \"name\": $string,\n  \"ready\": $bool\n}"
+      },
+      "RequestInput": {
+        "title": "RequestInput",
+        "required": [
+          "name",
+          "shape",
+          "datatype",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "shape": {
+            "title": "Shape",
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "datatype": {
+            "title": "Datatype",
+            "type": "string"
+          },
+          "parameters": {
+            "title": "Parameters",
+            "type": "object",
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            }
+          },
+          "data": {
+            "title": "Data",
+            "type": "array",
+            "items": {}
+          }
+        },
+        "description": "RequestInput Model\n\n$request_input =\n{\n  \"name\" : $string,\n  \"shape\" : [ $number, ... ],\n  \"datatype\"  : $string,\n  \"parameters\" : $parameters #optional,\n  \"data\" : $tensor_data\n}"
+      },
+      "RequestOutput": {
+        "title": "RequestOutput",
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "parameters": {
+            "title": "Parameters",
+            "type": "object",
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            }
+          }
+        },
+        "description": "RequestOutput Model\n\n$request_output =\n{\n  \"name\" : $string,\n  \"parameters\" : $parameters #optional,\n}"
+      },
+      "ResponseOutput": {
+        "title": "ResponseOutput",
+        "required": [
+          "name",
+          "shape",
+          "datatype",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "shape": {
+            "title": "Shape",
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "datatype": {
+            "title": "Datatype",
+            "type": "string"
+          },
+          "parameters": {
+            "title": "Parameters",
+            "type": "object",
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            }
+          },
+          "data": {
+            "title": "Data",
+            "type": "array",
+            "items": {}
+          }
+        },
+        "description": "ResponseOutput Model\n\n$response_output =\n{\n  \"name\" : $string,\n  \"shape\" : [ $number, ... ],\n  \"datatype\"  : $string,\n  \"parameters\" : $parameters #optional,\n  \"data\" : $tensor_data\n}"
+      },
+      "ServerLiveResponse": {
+        "title": "ServerLiveResponse",
+        "required": [
+          "live"
+        ],
+        "type": "object",
+        "properties": {
+          "live": {
+            "title": "Live",
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "live": true
+        }
+      },
+      "ServerMetadataResponse": {
+        "title": "ServerMetadataResponse",
+        "required": [
+          "name",
+          "version",
+          "extensions"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          },
+          "extensions": {
+            "title": "Extensions",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "ServerMetadataResponse\n\n$server_metadata_response =\n{\n  \"name\" : $string,\n  \"version\" : $string,\n  \"extensions\" : [ $string, ... ]\n}"
+      },
+      "ServerReadyResponse": {
+        "title": "ServerReadyResponse",
+        "required": [
+          "ready"
+        ],
+        "type": "object",
+        "properties": {
+          "ready": {
+            "title": "Ready",
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "ready": true
+        }
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

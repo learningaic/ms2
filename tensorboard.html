@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <title>Your Manual</title>
+</head>
+<body>
+
+    <header>
+        <h1>러닝스튜디오 매뉴얼 가이드</h1>
+    </header>
+
+    <div class="button-container">
+        <button class="button-box" onclick="window.location.href='notebook.html'">노트북</button>
+        <button class="button-box" onclick="window.location.href='tensorboard.html'">텐서보드</button>
+        <button class="button-box" onclick="window.location.href='katib.html'">AutoML</button>
+        <button class="button-box" onclick="window.location.href='serving.html'">서빙</button>
+        <button class="button-box" onclick="window.location.href='pipeline.html'">파이프라인</button>
+        <button class="button-box" onclick="window.location.href='pipeline-experiments.html'">파이프라인 실험</button>
+        <button class="button-box" onclick="window.location.href='pipeline-recurringruns.html'">파이프라인 스케줄링</button>
+        <button class="button-box" onclick="window.location.href='volume.html'">볼륨</button>
+        <button class="button-box" onclick="window.location.href='manage-users.html'">리소스 공유 관리</button>
+        <!-- 추가적인 버튼들 -->
+    </div>
+
+    <section>
+        <h2>Step 1. 텐서보드 만들기</h2>
+        <p class="board">1. 러닝스튜디오 대시보드 접속합니다.</p>
+        <p class="board">2. 좌측에 메뉴에서 <strong>파이프라인 → 텐서보드</strong> 탭을 선택입니다.</p>
+        <p class="board">3. 우측 상단에 위치한 “새 텐서보드 클릭</p>
+        <img src="tensorboard/1.tensorboard.png" alt="Create tensorboard">
+
+        <p class="board">4.텐서보드 설정</p>
+        <p class="p-indent">1) 텐서보드 이름, PVC, PVC 연결 경로</p>
+        <ul class="ul-indent">
+            <li >이름 : 원하는 이름 지정(네임 규칙 : 소문자 영문으로 시작)</li><br>
+            <li>PVC : 모델이 저장된 PVC이름</li><br>
+            <li>PVC연결 경로 : PVC 실제 경로</li>
+        </ul>
+        <img src="tensorboard/2.tensorboard.png" alt="Create Notebtensorboardook">
+        
+        <p class="board">5.텐서보드 연결</p>
+        <ul class="ul-indent">
+            <li >생성된 텐서보드 <strong>"연결"</strong> 클릭</li>
+        </ul>
+        <img src="tensorboard/3.tensorboard.png" alt="Create tensorboard">
+        <img src="tensorboard/4.tensorboard.png" alt="Create tensorboard">
+
+        <p class="board">6.텐서보드 시각화 보기</p>
+        <img src="tensorboard/5.tensorboard.png" alt="Create tensorboard">
+    </section>
+
+
+    <section>
+        <h2>Step 2. 텐서보드 삭제</h2>
+
+        <p class="board">1. 러닝스튜디오 대시보드 접속합니다.</p>
+        <p class="board">2. 좌측에 메뉴에서 <strong>파이프라인 → 텐서보드</strong> 탭을 선택입니다.</p>
+        <ul class="ul-indent">
+            <li>삭제할 텐서보드 리스트에서 <strong>"휴지통"</strong> 아이콘 클릭</li><br>
+            <img src="tensorboard/6.tensorboard.png" alt="Create tensorboard">
+        </ul>
+    </section>   
+
+
+
+
+    <footer>
+        <p>&copy; 2024 솔트룩스 러닝 스튜디오</p>
+    </footer>
+
+</body>
+</html>

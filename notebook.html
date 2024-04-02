@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+         
+    </style>
+    <title>Your Manual</title>
+</head>
+<body>
+
+    <header>
+        <h1>러닝스튜디오 매뉴얼 가이드</h1>
+    </header>
+
+    <div class="button-container">
+        <button class="button-box" onclick="window.location.href='notebook.html'">노트북</button>
+        <button class="button-box" onclick="window.location.href='tensorboard.html'">텐서보드</button>
+        <button class="button-box" onclick="window.location.href='katib.html'">AutoML</button>
+        <button class="button-box" onclick="window.location.href='serving.html'">서빙</button>
+        <button class="button-box" onclick="window.location.href='pipeline.html'">파이프라인</button>
+        <button class="button-box" onclick="window.location.href='pipeline-experiments.html'">파이프라인 실험</button>
+        <button class="button-box" onclick="window.location.href='pipeline-recurringruns.html'">파이프라인 스케줄링</button>
+        <button class="button-box" onclick="window.location.href='volume.html'">볼륨</button>
+        <button class="button-box" onclick="window.location.href='manage-users.html'">리소스 공유 관리</button>
+        <!-- 추가적인 버튼들 -->
+    </div>
+
+    <section>
+        <h2>Step 1. 노트북 만들기</h2>
+        <div>
+            <div>안내</div>
+            <div>노트북 리소스는 러닝스튜디오 리소스 </div>
+        </div>
+        <p class="board">1. 러닝스튜디오 대시보드 접속합니다.</p>
+        <p class="board">2. 좌측에 메뉴에서 “개발도구 → 노트북” 탭을 선택합니다</p>
+        <p class="board">3. 우측 상단에 위치한 “새 노트북” 클릭</p>
+        <img src="notebook/1.notebook.png" alt="Create Notebook">
+
+        <p class="board">4.새로운 노트북 생성</p>
+        <img src="notebook/2.notebook.png" alt="Create Notebook">
+        <table border="1">
+            <thead>
+                <th>항목</th>
+                <th>구분</th>
+                <th>설명</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="2">이름</td>
+                    <td>이름</td>
+                    <td>러닝스튜디오 대시보드에서 노트북 인스턴스 식별에 사용</td>
+                </tr>
+                <tr>
+                    <td>네임스페이스</td>
+                    <td>노트북 인스턴스가 배포될 쿠버네티스 네임스페이스 지정</td>
+                </tr>
+                <tr>
+                    <td>노트북 이미지</td>
+                    <td>이미지</td>
+                    <td>노트북에 사용한 이미지 선택</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">CPU / RAM</td>
+                    <td>최소 CPU</td>
+                    <td>노트북 인스턴스가 사용할 최소CPU 코어의 수</td>
+                </tr>
+                <tr>
+                    <td>최소 RAM</td>
+                    <td>노트북 인스턴스가 사용할 최소 RAM 수</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">GPUs</td>
+                    <td>GPUs 개수</td>
+                    <td>노트북 인스턴스에서 사용할 GPU 코어의 수</td>
+                </tr>
+                <tr>
+                    <td>GPU 벤더</td>
+                    <td>서버에 장착 GPU 벤더 지정</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p class="board">5.볼륨 생성(홈 디렉토리, 외부 디렉토리)</p>
+        
+        <img src="notebook/3.notebook.png" alt="Create Notebook">
+        <img src="notebook/4.notebook.png" alt="Create Notebook">
+        <table border="1">
+            <thead>
+                <th>항목</th>
+                <th>구분</th>
+                <th>설명</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="2">구분</td>
+                    <td>홈 디렉토리</td>
+                    <td>노트북 서버에 대한 홈 볼륨</td>
+                </tr>
+                <tr>
+                    <td>외부 디렉토리</td>
+                    <td>홈 디렉토리 볼륨 외 볼륨 또는 사전에 생성한 볼륨</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">타입</td>
+                    <td>빈 볼륨</td>
+                    <td>노트북에 사용한 이미지 선택</td>
+                </tr>
+                <tr>
+                    <td>커스텀</td>
+                    <td>쿠버네티스가 제공하는 YAML 스크립트형태로 생성하는 방식</td>
+                </tr>
+                <tr>
+                    <td>홈 디렉토리 볼륨 </td>
+                    <td>이름</td>
+                    <td>노트북 이름기반으로 생성됨(노트북이름-volume)</td>
+                </tr>
+                <tr>
+                    <td>볼륨 사이즈</td>
+                    <td>10</td>
+                    <td>노트북에 사용할 볼륨 사이즈(GB 단위)</td>
+                </tr>
+
+            </tbody>
+        </table>
+        
+        <p class="board">6.노트북 확인</p>
+        <ul class="ul-indent">
+            <li>생성된 노트북 -> 연결 버튼 클릭</li>
+            <img src="notebook/8.notebook.png" alt="Create Notebook">
+        </ul>
+
+    </section>
+
+    <section>
+        <h2>Step 2. 노트북 중지</h2>
+
+        <p class="board">1. 러닝스튜디오 대시보드 접속합니다.</p>
+        <p class="board">2. 좌측에 메뉴에서 “개발도구 → 노트북” 탭을 선택합니다</p>
+        <p class="board">3. 노트북 중지</p>
+        <img src="notebook/9.notebook.png" alt="Create Notebook">
+    </section>   
+
+    <section>
+        <h2>Step 3. 노트북 삭제</h2>
+        <div>
+            <div>안내</div>
+            <div>노트북 삭제 할 경우 데이터가 유실될 수 있으므로 데이터 백업 필수</div>
+        </div>
+
+        <p class="board">1. 러닝스튜디오 대시보드 접속합니다.</p>
+        <p class="board">2. 좌측에 메뉴에서 “개발도구 → 노트북” 탭을 선택합니다</p>
+        <ul class="ul-indent">
+            <li>삭제할 노트북 리스트에서 <strong>"휴지통"</strong> 아이콘 클릭</li><br>
+            <img src="notebook/10.notebook.png" alt="Create Notebook">
+        </ul>
+    </section>   
+
+    <footer>
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </footer>
+
+
+    
+</body>
+</html>

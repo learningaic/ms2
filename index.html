@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 10px;
+            background-color: #f2f2f2;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #007BFF;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        img {
+            max-width: 50%;
+            height: auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f2f2f2;
+        }
+        .in{
+            text-indent: 20px; 
+        }
+        .in1{
+            text-indent: 50px; 
+        }   
+        .in2{
+            text-indent: 50px; 
+        }        
+        .board{
+            font-weight:bold;
+        }
+
+
+        .button-box {
+
+        
+            /* margin: 10px; */
+            cursor: pointer;
+            /* padding: 20px; */
+            width: 100px;
+            height: 50px;
+            margin: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            /* margin-inline-start: auto; */
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+        }    
+        .button-container {
+            /* display: flex; */
+            justify-content: space-around;
+            margin-bottom: 100px;
+            /* margin: -50px 0 0 -50px; */
+
+        }
+
+        .button-box {
+
+        }
+
+        .button-box:hover {
+            background-color: #f2f2f2;
+        }              
+    </style>
+    <title>Your Manual</title>
+</head>
+<body>
+
+    <header>
+        <h1>러닝스튜디오 매뉴얼 가이드</h1>
+    </header>
+
+    <div class="button-container">
+        <button class="button-box" onclick="window.location.href='notebook.html'">노트북</button>
+        <button class="button-box" onclick="window.location.href='tensorboard.html'">텐서보드</button>
+        <button class="button-box" onclick="window.location.href='katib.html'">AutoML</button>
+        <button class="button-box" onclick="window.location.href='serving.html'">서빙</button>
+        <button class="button-box" onclick="window.location.href='pipeline.html'">파이프라인</button>
+        <button class="button-box" onclick="window.location.href='pipeline-experiments.html'">파이프라인 실험</button>
+        <button class="button-box" onclick="window.location.href='pipeline-recurringruns.html'">파이프라인 스케줄링</button>
+        <button class="button-box" onclick="window.location.href='volume.html'">볼륨</button>
+        <button class="button-box" onclick="window.location.href='manage-users.html'">리소스 공유 관리</button>
+        <!-- 추가적인 버튼들 -->
+    </div>
+</body>
+</html>
