@@ -4,27 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/style.css" rel="stylesheet" type="text/css">
-    <title>Your Manual</title>
+    <title>Learning Studio Manual</title>
 </head>
 <body>
 
-    <header>
-        <h1>러닝스튜디오 매뉴얼 가이드</h1>
-    </header>
+    <div class="two">
+        <h1>러닝스튜디오 기능별 가이드
+          <span>Learning studio Manual</span>
+        </h1>
+    </div>
 
     <div class="button-container">
-        <button class="button-box" onclick="window.location.href='notebook.html'">노트북</button>
-        <button class="button-box" onclick="window.location.href='tensorboard.html'">텐서보드</button>
-        <button class="button-box" onclick="window.location.href='katib.html'">AutoML</button>
-        <button class="button-box" onclick="window.location.href='serving.html'">서빙</button>
-        <button class="button-box" onclick="window.location.href='pipeline.html'">파이프라인</button>
-        <button class="button-box" onclick="window.location.href='pipeline-experiments.html'">파이프라인 실험</button>
-        <button class="button-box" onclick="window.location.href='pipeline-recurringruns.html'">파이프라인 스케줄링</button>
-        <button class="button-box" onclick="window.location.href='volume.html'">볼륨</button>
-        <button class="button-box" onclick="window.location.href='manage-users.html'">리소스 공유 관리</button>
+        <button class="custom-btn btn-3" onclick="window.location.href='notebook.html'"><span>노트북</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='tensorboard.html'"><span>텐서보드</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='katib.html'"><span>AutoML</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href=''"><span style="font-size: xx-small;">하이퍼파라미터튜닝 예제</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='serving.html'"><span>서빙</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='pipeline.html'"><span>파이프라인</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='pipeline-experiments.html'"><span>파이프라인 실험</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='pipeline-recurringruns.html'"><span>파이프라인 스케줄링</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='pipeline_SDK.html'"><span>파이프라인 SDK 안내</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='pipeline_e2eMNIST.html'"><span style="font-size: xx-small;">파이프라인_학습부터서빙</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href=''"><span style="font-size: xx-small;">파이프라인예제 코드모음</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='volume.html'"><span>볼륨</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='manage-users.html'"><span>리소스 공유 관리</span></button>
         <!-- 추가적인 버튼들 -->
     </div>
 
+    <section>
+        <h2>개요</h2>
+        <p>파이프라인은 컨테이너 기반의 <strong>end-to-end ML워크플로우를 만들고 배포할 수 있는 쿠버네티스 플랫폼</strong>입니다. </p>
+        <ul>
+        <li>컨테이너 기반으로 구성되어 있게 때문에 확장성 및 재사용성 가능</li>
+        <li>사용자가 파이프라인을 개발한 후 파이프라인을 통해 업로드 및 공유 가능</li>
+        <li>사용자가 작성한 파이프라인 컴포넌트는 Docker 이미지로 패키징되며, 그래프의 결합 형태에 따른 순서대로 실행</li>
+        <li>파이프라인이 실행되면 시스템은 <strong>[ 각 단계에 맞는 쿠버네티스 파드 실행 &gt; 파드는 설정된 컨테이너를 실행 &gt; 컨테이너 내부에 있는 애플리케이션을 실행 ]</strong> 시킵니다. 스케쥴러에 따라서 순서대로 컨테이너들이 실행됩니다.</li>
+        </ul>
+        <h2 >파이프라인 구성</h2>
+        <ul>
+        <li>실험(Experiment), 잡(Job), 런(Run)을 추적하고 관리하는 사용자 dlsxjvpdltm</li>
+        <li>ML워크플로우 단계별 스케쥴링 엔진</li>
+        <li>파이프라인과 컴포넌트들을 생성하는 SDK</li>
+        <li>SDK와 연동하는 주피터노트북</li>
+        </ul>
+        <h2 id="-">파이프라인 실행 방식</h2>
+        <ul>
+        <li><strong>Python  SDK</strong> : 파이프라인 DSL를 통해서 컴포넌트를 작성</li>
+        <li><strong>DSL Compiler</strong> : 파이썬 코드를 쿠버네티스 리소스 양식(YAML)로 변환</li>
+        <li><strong>Pipeline Service</strong> : 큐버네티스 리소스 양식에서 파이프라인을 생성하기 위해 Pipeline Service를 호출</li>
+        <li><strong>Kubernetes resources</strong> : Pipeline Service는 쿠버네티스 API 서버를 호출하여 파이프라인을 실행하기 위한 쿠버네티스 리소스를 생성</li>
+        <li><strong>Orchestration controllers</strong> : 오케스트레이션 컨트롤러는 쿠버네티스 리소스에 정의된 파이프라인을 실행하기 위한 컨테이너를 실행(파드 내부에서 실행)</li>
+        <li><strong>Artifact storage</strong> : 실행된 파드는 파이프라인의 실험정보들을 담은 Metadata를 준비된 database(mysql)서버에 담고 그 외의 큰 사이즈의 정보는  Minio 서버 또는 스토리지에 저장</li>
+        <li><strong>Pipeline web server</strong> : 실행된 파이프라인은 웹UI에서 진행 상황과 생성되는 데이터 및 정보 등을 확인</li>
+        </ul>
+
+    </section>
     <section>
         <h2>Step 1. 파이프라인 리스트 보기</h2>
         <p class="board">1. 러닝스튜디오 대시보드 접속합니다.</p>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <title>Learning Studio Manual</title>
+</head>
+<body>
+
+    <div class="two">
+        <h1>러닝스튜디오 기능별 가이드
+          <span>Learning studio Manual</span>
+        </h1>
+    </div>
+
+    <div class="button-container">
+        <button class="custom-btn btn-3" onclick="window.location.href='notebook.html'"><span>노트북</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='tensorboard.html'"><span>텐서보드</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='katib.html'"><span>AutoML</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href=''"><span style="font-size: xx-small;">하이퍼파라미터튜닝 예제</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='serving.html'"><span>서빙</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='pipeline.html'"><span>파이프라인</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='pipeline-experiments.html'"><span>파이프라인 실험</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='pipeline-recurringruns.html'"><span>파이프라인 스케줄링</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='pipeline_SDK.html'"><span>파이프라인 SDK 안내</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='pipeline_e2eMNIST.html'"><span style="font-size: xx-small;">파이프라인_학습부터서빙</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href=''"><span style="font-size: xx-small;">파이프라인예제 코드모음</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='volume.html'"><span>볼륨</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='manage-users.html'"><span>리소스 공유 관리</span></button>
+
+        <!-- 추가적인 버튼들 -->
+    </div>
+
+    <section>
+        <h2 id="-sdk-">파이프라인 SDK 설치</h2>
+        <p>노트북에서 &#39;콘솔&#39;을 실행하여 진행</p>
+        <ul>
+        <li><p>파이썬 패키지 설치</p>
+        <pre><code class="lang-sh"><span class="hljs-comment">$</span> <span class="hljs-comment">pip3</span> <span class="hljs-comment">install</span> <span class="hljs-comment">kfp</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">upgrade</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">user</span>
+        <br>$ pip3 install urllib3==1.26.15 requests-toolbelt==0.10.1</code></pre>
+        </li>
+        <li><p>설치 확인</p>
+        <pre><code>$ which kfp
+        /usr/local/bin/kfp
+        $ which dsl-compile
+        /user/local/bin/dsl-compile
+        </code></pre></li>
+        </ul>
+        <h2 id="-sdk-">파이프라인 SDK 패키지 둘러보기</h2>
+        <p>파이프라인 SDK 패키지는 크게 5개의 영역으로 나뉘어져 있습니다.</p>
+        <h3 id="1-kfp-compiler">1. kfp.compiler</h3>
+        <p>파이프라인 컴포넌트를 빌드하는 클래스와 메소드들의 패키지</p>
+        <ul>
+        <li><strong>.Compiler.compile</strong> : 파이선 DSL 코드를 파이프라인 YAML 파일로 변환</li>
+        </ul>
+        <h3 id="2-kfp-components">2. kfp.components</h3>
+        <p>파이프라인 컴포넌트들을 다루는 클래스와 메소드들의 패키지</p>
+        <ul>
+        <li><strong>.func_to_container_op</strong> : 파이선 함수를 파이프라인 컴포넌트로 변환</li>
+        <li><strong>.load_component_frim_file</strong> : 파일을 파이프라인 컴포넌트로 변환</li>
+        <li><strong>.load_component_from_url</strong> :  URL에서 파이프라인 컴포넌트 변환</li>
+        </ul>
+        <h3 id="3-kfp-dsl">3. kfp.dsl</h3>
+        <p>실제 파이프라인을 파이선 코드로 작성할때 사용하는 클래스와 메소드, 모듈들의 패키지</p>
+        <ul>
+        <li><strong>.ContianerOp</strong> : 컨테이너 이미지로 구성되는 파이프라인 Op</li>
+        <li><strong>.PipelineParam</strong> : 파이프라인끼리 전달할 파라미터</li>
+        <li><strong>.ResourceOp</strong> : Kubernetes resource를 다루는 파이프라인 Op(create, apply, get, ...)</li>
+        <li><strong>.VolumeOp</strong> : 쿠버네티스 PVC를 생성하는 파이프라인 Op</li>
+        <li><strong>.VolumeSnapshotOp</strong> : 볼륨의 스냅샷을 생성하는 파이프라인 Op</li>
+        <li><strong>.PipelineVolume</strong> : 기존의 PVC를 사용하거나, 파이프라인끼리 데이터 공유용으로 사용되는 볼륨을 설정, ContainerOp에서 pvolume 옵션으로 마운트가 가능합니다.</li>
+        </ul>
+        <h3 id="4-kfp-client">4. kfp.Client</h3>
+        <p>파이프라인 API와 통신하는 파이선 클라이언트 라이브러리 패키지</p>
+        <ul>
+        <li><strong>.create_experiment</strong> : experiment 생성</li>
+        <li><strong>.run_pipeline</strong> : 런 생성</li>
+        <li><strong>.create_run_from_pipeline_func</strong> : DSL의 op를 포함하는 python function을 파이프라인의 run으로 생성, 노트북에서 실행 시 Experiment, Run link 제공하며, 파이썬 파일을 pipeline package로 컴파일한 후 create_run_from_pipeline_package 실행</li>
+        <li><strong>.create_run_from_pipeline_package</strong> : 컴파일된 pipeline package를 run으로 생성</li>
+        <li><strong>.upload_pipeline</strong> : 컴파일된 pipeline package를 kf pipeline cluster로 업로드. 이때 노트북일 경우에는 link로 제공</li>
+        </ul>
+        <h3 id="5-kfp-containers">5. kfp.containers</h3>
+        <p>컨테이너 이미지 관련 메소드와 클래스들의 패키지</p>   
+    </section>
+    <section>
+        <h2 id="sdk-">SDK로 파이프라인 만들기</h2>
+<p>파이프라인은 컨테이너 이미지 기반으로 실행되지 때문에 Docker 클라이언트가 설치된 환경임을 전제합니다.</p>
+<h3 id="-1-kfp-dsl-containerop-">작성 방법 1. kfp.dsl 패키지 내의 ContainerOp를 이용하여 작성하는 방법</h3>
+<p>ML 워크플로우의 특정 스텝에서 필요한 테스크를 수행하는 애플리케이션이 작성되어 있어야 합니다. 그 애플리케이션이 도커 이미지로 패키징되어 단독으로도 실행할 수 있어야 합니다. ContainerOp는 그 도커 이미지를 매개변수로 작성됩니다.</p>
+<h4 id="-containerop-">생성자  ContainerOp() 매개변수 정보</h4>
+<ul>
+<li><strong>name</strong> : str 필수값, 컴포넌트의 이름, 중복이름일 경우에는 새로운 이름으로 생성</li>
+<li><strong>image</strong> : str 필수값, 컨테이너 이미지 이름</li>
+<li><strong>command</strong> : StringOrStringList 컨테이너 실행 명령어</li>
+<li><strong>aguments</strong> : StringOrStringList 컨테이너 실행 인자값</li>
+<li><strong>int_containers</strong> : List[UserContainer] 메인 컨테이너가 실행되지 전에 실행되는 컨테이너
+코드예제) [dsl.InitContainer(&#39;print&#39;, &#39;busybox:latest&#39;, command=&#39;echo &quot;hello&quot;&#39;)]</li>
+<li><strong>sidecars</strong> : List[Sidecar] 메인 컨테이너와 같이 실행되는 컨테이너
+코드예제) [dsl.Sidecar(&#39;print&#39;, &#39;busybox:latest&#39;, command=&#39;echo &quot;hello&quot;&#39;)]</li>
+<li><strong>container_kwargs</strong> : Dic 컨테이너 환경 변수 값
+코드예제) {&#39;env&#39;:[V1EnvVar(&#39;foo&#39;, &#39;bar&#39;)]}</li>
+<li><strong>artifact_argument_paths</strong> : List[InputArgumentPath] 인풋파일경로가 애플리케이션에서 하드코딩되어 있을때 사용</li>
+<li><strong>file_outputs</strong> : Dict[str, str] [ 아웃풋 라벨:로컬파일] 파이프라인 실행 시전에서 PipelineParam의 값이 설정한 로컬파일에 저장됩니다. 컨테이너의 결과를 외부로 노출시키는 유일한 방법입니다.
+코드예제) {&#39;merged&#39; : &#39;/tmp/message.txt&#39;}</li>
+<li><strong>output_artifact_paths</strong> : Dict[str, str] [아티팩트라벨 : 로컬 아티팩트경로]
+코드예제) {&#39;mlpipeline-ui-metadata&#39;:&#39;/mlpipeline-ui-metadata.json&#39;, &#39;mlpipeline-metrics&#39;: &#39;/mlpipeline-metricts.json&#39;}</li>
+<li><strong>pvolumes</strong> : Dict[컨테이너 경로, V1Volume] 다른 파이프라인의 볼륨이나 Volumeop으로 만들어진 볼륨을 정의한 컨테이너 경로에 마운드
+코드예제) {&quot;/my/path&quot;: vol, &quot;/mnt&quot;: other_op.pvolumes[&quot;/ouptput&quot;]}</li>
+</ul>
+<h4 id="continerop-">ContinerOp 생성자</h4>
+<pre><code>ContainerOp(
+    name: <span class="hljs-keyword">str</span>,
+    image: <span class="hljs-keyword">str</span>,
+    command: StringOrStringList = <span class="hljs-literal">None</span>,
+    argument: StringOrStringList = <span class="hljs-literal">None</span>,
+    init_containers: List[UserContainer] = <span class="hljs-literal">None</span>,
+    sidecars: List[Sidecar] = <span class="hljs-literal">None</span>,
+    artifact_argument_paths: List[InputArgumentPath] = <span class="hljs-literal">None</span>,
+    file_outputs: Dict[<span class="hljs-keyword">str</span>, <span class="hljs-keyword">str</span>] = <span class="hljs-literal">None</span>,
+    output_artifact_paths: Dict[<span class="hljs-keyword">str</span>, <span class="hljs-keyword">str</span>] = <span class="hljs-literal">None</span>,
+    pvolumes: Dict[<span class="hljs-keyword">str</span>, V1volume] = <span class="hljs-literal">None</span>
+)
+</code></pre><h4 id="containerop-hello-world-">ContainerOp를 이용한 Hello World 메시지 파이프라인 작성 예제</h4>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> kfp
+<span class="hljs-keyword">from</span> kfp <span class="hljs-keyword">import</span> dsl
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">echo_op</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">return</span> dsl.ContainerOp(
+        name=<span class="hljs-string">'echo'</span>, <span class="hljs-comment">## 컴포넌트 이름</span>
+        image=<span class="hljs-string">'library/bash:4.4.23'</span>,
+        command=[<span class="hljs-string">'sh'</span>, <span class="hljs-string">'-c'</span>],
+        aruments=[<span class="hljs-string">'echo "Hello World"'</span>]
+    )
+
+<span class="hljs-comment">## 쿠버네티스의 리소스 메타정보 데코레이션으로 필수!</span>
+<span class="hljs-meta">@dsl.pipeline( name='ContainerOp pipeline', description='containerOp')  </span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">hello_world_pipeline</span><span class="hljs-params">()</span>:</span>
+    echo_task = echo_op()
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:
+    <span class="hljs-comment">## compiler.Compiler().compile:함수명을 매개변수로 받고 파이프라인 리소스를 포함하는 ontainerop.pipeline.tar.gz 파일 생성</span>
+    kfp.compiler.Compiler().compile(hello_world_pipeline, <span class="hljs-string">'containerop.pipeline.tar.gz'</span>)
+</code></pre>
+<h3 id="-2-">작성 방법 2. 파이썬 함수를 파이프라인으로 변환하는 방법</h3>
+<h4 id="-">파이썬 함수를 파이프라인으로 생성하는 예제</h4>
+<pre><code class="lang-python">import kfp.dsl <span class="hljs-keyword">as</span> dsl
+
+@dsl.pipeline( name=<span class="hljs-string">'example_1'</span>, description=<span class="hljs-string">'description'</span>)  
+def my_pipeline(<span class="hljs-variable">a:</span> <span class="hljs-keyword">int</span> = <span class="hljs-number">1</span>, <span class="hljs-variable">b:</span> str = <span class="hljs-string">"default valie"</span>):
+    <span class="hljs-keyword">print</span>(<span class="hljs-keyword">a</span>)
+    <span class="hljs-keyword">print</span>(<span class="hljs-keyword">b</span>)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:
+    import kfp.<span class="hljs-keyword">compiler</span> ad <span class="hljs-keyword">compiler</span>
+    <span class="hljs-keyword">compiler</span>.Compiler().compile(my_pipeline, <span class="hljs-string">'my_pipeline.pipeline.tar.gz'</span>)
+</code></pre>
+<p>실행하면 파이프라인 파일을 생성하고 아래 메시지 출력</p>
+<p>{{pipelineparam:op=; name=a}}<br>
+{{pipelineparam:op=; name=b}}</p>
+<h4 id="-run-">파이프라인 파일을 생성하지 않고 노트북에서 바로실행(Run)하는 예제</h4>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> kfp
+<span class="hljs-keyword">from</span> kfp <span class="hljs-keyword">import</span> dsl
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">echo_op</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">return</span> dsl.ContainerOp(
+        name=<span class="hljs-string">'echo'</span>,
+        image=<span class="hljs-string">'library/bash:4.4.23'</span>,
+        command=[<span class="hljs-string">'sh'</span>, <span class="hljs-string">'-c'</span>],
+        aruments=[<span class="hljs-string">'echo "Hello World by notebook"'</span>]
+    )
+
+<span class="hljs-comment">## 쿠버네티스의 리소스 메타정보 데코레이션으로 필수!</span>
+<span class="hljs-meta">@dsl.pipeline( name='ContainerOp pipeline', description='containerOp')  </span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">hello_world_pipeline</span><span class="hljs-params">()</span>:</span>
+    echo_task = echo_op()
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:
+    kfp.Client().create_run_from_pipeline_func(pipeline=hello_world_pipeline, arguments={})
+</code></pre>
+<p><strong>create_run_from_pipeline_func</strong>메소드를 사용하면 실행시 런을 등록한 후 Experiment와 런으로 갈 수 있는 링크를 제공합니다.</p>
+<p>-- 출력 메세지<br>
+Experiment link here<br>
+Run link here</p>
+
+    </section>
+
+
+    <footer>
+        <p>&copy; 2024 솔트룩스 러닝 스튜디오</p>
+    </footer>
+
+</body>
+</html>

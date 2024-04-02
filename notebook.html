@@ -6,33 +6,35 @@
     <link href="css/style.css" rel="stylesheet" type="text/css">
          
     </style>
-    <title>Your Manual</title>
+    <title>Learning Studio Manual</title>
 </head>
 <body>
 
-    <header>
-        <h1>러닝스튜디오 매뉴얼 가이드</h1>
-    </header>
+    <div class="two">
+        <h1>러닝스튜디오 기능별 가이드
+          <span>Learning studio Manual</span>
+        </h1>
+    </div>
 
     <div class="button-container">
-        <button class="button-box" onclick="window.location.href='notebook.html'">노트북</button>
-        <button class="button-box" onclick="window.location.href='tensorboard.html'">텐서보드</button>
-        <button class="button-box" onclick="window.location.href='katib.html'">AutoML</button>
-        <button class="button-box" onclick="window.location.href='serving.html'">서빙</button>
-        <button class="button-box" onclick="window.location.href='pipeline.html'">파이프라인</button>
-        <button class="button-box" onclick="window.location.href='pipeline-experiments.html'">파이프라인 실험</button>
-        <button class="button-box" onclick="window.location.href='pipeline-recurringruns.html'">파이프라인 스케줄링</button>
-        <button class="button-box" onclick="window.location.href='volume.html'">볼륨</button>
-        <button class="button-box" onclick="window.location.href='manage-users.html'">리소스 공유 관리</button>
+        <button class="custom-btn btn-3" onclick="window.location.href='notebook.html'"><span>노트북</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='tensorboard.html'"><span>텐서보드</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='katib.html'"><span>AutoML</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href=''"><span style="font-size: xx-small;">하이퍼파라미터튜닝 예제</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='serving.html'"><span>서빙</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='pipeline.html'"><span>파이프라인</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='pipeline-experiments.html'"><span>파이프라인 실험</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='pipeline-recurringruns.html'"><span>파이프라인 스케줄링</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='pipeline_SDK.html'"><span>파이프라인 SDK 안내</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='pipeline_e2eMNIST.html'"><span style="font-size: xx-small;">파이프라인_학습부터서빙</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href=''"><span style="font-size: xx-small;">파이프라인예제 코드모음</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='volume.html'"><span>볼륨</span></button>
+        <button class="custom-btn btn-3" onclick="window.location.href='manage-users.html'"><span>리소스 공유 관리</span></button>
         <!-- 추가적인 버튼들 -->
     </div>
 
     <section>
         <h2>Step 1. 노트북 만들기</h2>
-        <div>
-            <div>안내</div>
-            <div>노트북 리소스는 러닝스튜디오 리소스 </div>
-        </div>
         <p class="board">1. 러닝스튜디오 대시보드 접속합니다.</p>
         <p class="board">2. 좌측에 메뉴에서 “개발도구 → 노트북” 탭을 선택합니다</p>
         <p class="board">3. 우측 상단에 위치한 “새 노트북” 클릭</p>
@@ -145,8 +147,7 @@
     <section>
         <h2>Step 3. 노트북 삭제</h2>
         <div>
-            <div>안내</div>
-            <div>노트북 삭제 할 경우 데이터가 유실될 수 있으므로 데이터 백업 필수</div>
+            <div style="font-size: smaller;color:rgba(177, 3, 3, 0.767)"> ※ 노트북 삭제 할 경우 데이터가 유실될 수 있으므로 데이터 백업 필수</div>
         </div>
 
         <p class="board">1. 러닝스튜디오 대시보드 접속합니다.</p>
